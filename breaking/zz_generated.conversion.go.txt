@@ -1,0 +1,140 @@
+{*ast.File [v1]}
+
+
+{*ast.GenDecl -> *ast.ImportSpec [unsafe]}
+{*ast.BasicLit [STRING "unsafe"]}
+{*ast.ImportSpec [testgroup]}
+{*ast.BasicLit [STRING "github.com/cert-manager/cert-manager/pkg/webhook/handlers/testdata/apis/testgroup"]}
+{*ast.ImportSpec [conversion]}
+{*ast.BasicLit [STRING "k8s.io/apimachinery/pkg/conversion"]}
+{*ast.ImportSpec [runtime]}
+{*ast.BasicLit [STRING "k8s.io/apimachinery/pkg/runtime"]}
+
+
+function name is init 
+	 { [init]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.BlockStmt -> *ast.ExprStmt -> *ast.CallExpr -> *ast.SelectorExpr [localSchemeBuilder Register RegisterConversions]}
+
+
+function name is RegisterConversions 
+	 { [RegisterConversions]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [s]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [runtime Scheme]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.IfStmt -> *ast.AssignStmt [:= err]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [s AddGeneratedConversionFunc]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr [TestType nil]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr -> *ast.SelectorExpr [testgroup TestType nil]}
+	 {*ast.FuncLit -> *ast.FuncType -> *ast.FieldList -> *ast.Field [a b]}
+	 {*ast.InterfaceType []}
+	 {*ast.FieldList -> *ast.Field [scope]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt -> *ast.CallExpr [Convert_v1_TestType_To_testgroup_TestType]}
+	 {*ast.TypeAssertExpr [a]}
+	 {*ast.StarExpr [TestType]}
+	 {*ast.TypeAssertExpr [b]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType scope]}
+	 {*ast.BinaryExpr [!= err nil]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt [err]}
+	 {*ast.IfStmt -> *ast.AssignStmt [:= err]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [s AddGeneratedConversionFunc]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr -> *ast.SelectorExpr [testgroup TestType nil]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr [TestType nil]}
+	 {*ast.FuncLit -> *ast.FuncType -> *ast.FieldList -> *ast.Field [a b]}
+	 {*ast.InterfaceType []}
+	 {*ast.FieldList -> *ast.Field [scope]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt -> *ast.CallExpr [Convert_testgroup_TestType_To_v1_TestType]}
+	 {*ast.TypeAssertExpr [a]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType]}
+	 {*ast.TypeAssertExpr [b]}
+	 {*ast.StarExpr [TestType scope]}
+	 {*ast.BinaryExpr [!= err nil]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt [err]}
+	 {*ast.ReturnStmt [nil]}
+
+
+function name is autoConvert_v1_TestType_To_testgroup_TestType 
+	 { [autoConvert_v1_TestType_To_testgroup_TestType]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [in]}
+	 {*ast.StarExpr [TestType]}
+	 {*ast.Field [out]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType]}
+	 {*ast.Field [s]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out ObjectMeta]}
+	 {*ast.SelectorExpr [in ObjectMeta]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestField]}
+	 {*ast.SelectorExpr [in TestField]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestFieldPtr]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr [string]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [unsafe Pointer]}
+	 {*ast.SelectorExpr [in TestFieldPtr]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestFieldImmutable]}
+	 {*ast.SelectorExpr [in TestFieldImmutable]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestDefaultingField]}
+	 {*ast.SelectorExpr [in TestDefaultingField]}
+	 {*ast.ReturnStmt [nil]}
+
+
+function name is Convert_v1_TestType_To_testgroup_TestType 
+	 { [Convert_v1_TestType_To_testgroup_TestType]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [in]}
+	 {*ast.StarExpr [TestType]}
+	 {*ast.Field [out]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType]}
+	 {*ast.Field [s]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt -> *ast.CallExpr [autoConvert_v1_TestType_To_testgroup_TestType in out s]}
+
+
+function name is autoConvert_testgroup_TestType_To_v1_TestType 
+	 { [autoConvert_testgroup_TestType_To_v1_TestType]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [in]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType]}
+	 {*ast.Field [out]}
+	 {*ast.StarExpr [TestType]}
+	 {*ast.Field [s]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out ObjectMeta]}
+	 {*ast.SelectorExpr [in ObjectMeta]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestField]}
+	 {*ast.SelectorExpr [in TestField]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestFieldPtr]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr [string]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [unsafe Pointer]}
+	 {*ast.SelectorExpr [in TestFieldPtr]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestFieldImmutable]}
+	 {*ast.SelectorExpr [in TestFieldImmutable]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.SelectorExpr [out TestDefaultingField]}
+	 {*ast.SelectorExpr [in TestDefaultingField]}
+	 {*ast.ReturnStmt [nil]}
+
+
+function name is Convert_testgroup_TestType_To_v1_TestType 
+	 { [Convert_testgroup_TestType_To_v1_TestType]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [in]}
+	 {*ast.StarExpr -> *ast.SelectorExpr [testgroup TestType]}
+	 {*ast.Field [out]}
+	 {*ast.StarExpr [TestType]}
+	 {*ast.Field [s]}
+	 {*ast.SelectorExpr [conversion Scope]}
+	 {*ast.FieldList -> *ast.Field [error]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt -> *ast.CallExpr [autoConvert_testgroup_TestType_To_v1_TestType in out s]}
+
+

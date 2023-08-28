@@ -1,0 +1,64 @@
+0: *ast.File
+	1: *ast.Ident dataset
+	1: *ast.GenDecl
+		2: *ast.TypeSpec
+			3: *ast.Ident GenHeader
+			3: *ast.FieldList
+				4: *ast.Field
+					5: *ast.Ident T
+					5: *ast.Ident any
+			3: *ast.StructType
+				4: *ast.FieldList
+					5: *ast.Field
+						6: *ast.Ident List
+						6: *ast.ArrayType
+							7: *ast.Ident T
+	1: *ast.FuncDecl SetGI
+		2: *ast.FieldList
+			3: *ast.Field
+				4: *ast.Ident g
+				4: *ast.StarExpr
+					5: *ast.IndexExpr
+						6: *ast.Ident GenHeader
+						6: *ast.Ident T
+		2: *ast.Ident SetGI
+		2: *ast.FuncType
+			3: *ast.FieldList
+				4: *ast.Field
+					5: *ast.Ident i
+					5: *ast.Ident int
+				4: *ast.Field
+					5: *ast.Ident x
+					5: *ast.Ident T
+		2: *ast.BlockStmt
+			3: *ast.AssignStmt
+				4: *ast.IndexExpr
+					5: *ast.SelectorExpr
+						6: *ast.Ident g
+						6: *ast.Ident List
+					5: *ast.Ident i
+				4: *ast.Ident x
+	1: *ast.FuncDecl GetGI
+		2: *ast.FieldList
+			3: *ast.Field
+				4: *ast.Ident g
+				4: *ast.StarExpr
+					5: *ast.IndexExpr
+						6: *ast.Ident GenHeader
+						6: *ast.Ident T
+		2: *ast.Ident GetGI
+		2: *ast.FuncType
+			3: *ast.FieldList
+				4: *ast.Field
+					5: *ast.Ident i
+					5: *ast.Ident int
+			3: *ast.FieldList
+				4: *ast.Field
+					5: *ast.Ident T
+		2: *ast.BlockStmt
+			3: *ast.ReturnStmt
+				4: *ast.IndexExpr
+					5: *ast.SelectorExpr
+						6: *ast.Ident g
+						6: *ast.Ident List
+					5: *ast.Ident i

@@ -1,0 +1,89 @@
+{*ast.File [fastcache]}
+
+
+{*ast.GenDecl -> *ast.ImportSpec -> *ast.BasicLit [STRING "fmt"]}
+{*ast.ImportSpec -> *ast.BasicLit [STRING "sync"]}
+{*ast.ImportSpec -> *ast.BasicLit [STRING "unsafe"]}
+{*ast.ImportSpec -> *ast.BasicLit [STRING "golang.org/x/sys/unix"]}
+{*ast.GenDecl -> *ast.ValueSpec [chunksPerAlloc]}
+{*ast.BasicLit [INT 1024]}
+{*ast.GenDecl -> *ast.ValueSpec [freeChunks]}
+{*ast.ArrayType -> *ast.StarExpr -> *ast.ArrayType [chunkSize byte]}
+{*ast.ValueSpec [freeChunksLock]}
+{*ast.SelectorExpr [sync Mutex]}
+
+
+function name is getChunk 
+	 { [getChunk]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.FieldList -> *ast.Field -> *ast.ArrayType [byte]}
+	 {*ast.BlockStmt -> *ast.ExprStmt -> *ast.CallExpr -> *ast.SelectorExpr [freeChunksLock Lock]}
+	 {*ast.IfStmt []}
+	 {*ast.BinaryExpr [==]}
+	 {*ast.CallExpr [len freeChunks]}
+	 {*ast.BasicLit [INT 0]}
+	 {*ast.BlockStmt -> *ast.AssignStmt [:= data err]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [unix Mmap]}
+	 {*ast.UnaryExpr [-]}
+	 {*ast.BasicLit [INT 1]}
+	 {*ast.BasicLit [INT 0]}
+	 {*ast.BinaryExpr [* chunkSize chunksPerAlloc]}
+	 {*ast.BinaryExpr [|]}
+	 {*ast.SelectorExpr [unix PROT_READ]}
+	 {*ast.SelectorExpr [unix PROT_WRITE]}
+	 {*ast.BinaryExpr [|]}
+	 {*ast.SelectorExpr [unix MAP_ANON]}
+	 {*ast.SelectorExpr [unix MAP_PRIVATE]}
+	 {*ast.IfStmt []}
+	 {*ast.BinaryExpr [!= err nil]}
+	 {*ast.BlockStmt -> *ast.ExprStmt -> *ast.CallExpr [panic]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [fmt Errorf]}
+	 {*ast.BasicLit [STRING "cannot allocate %d bytes via mmap: %s"]}
+	 {*ast.BinaryExpr [* chunkSize chunksPerAlloc err]}
+	 {*ast.ForStmt []}
+	 {*ast.BinaryExpr [>]}
+	 {*ast.CallExpr [len data]}
+	 {*ast.BasicLit [INT 0]}
+	 {*ast.BlockStmt -> *ast.AssignStmt [:= p]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr -> *ast.ArrayType [chunkSize byte]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [unsafe Pointer]}
+	 {*ast.UnaryExpr [&]}
+	 {*ast.IndexExpr [data]}
+	 {*ast.BasicLit [INT 0]}
+	 {*ast.AssignStmt [= freeChunks]}
+	 {*ast.CallExpr [append freeChunks p]}
+	 {*ast.AssignStmt [= data]}
+	 {*ast.SliceExpr [data chunkSize]}
+	 {*ast.AssignStmt [:= n]}
+	 {*ast.BinaryExpr [-]}
+	 {*ast.CallExpr [len freeChunks]}
+	 {*ast.BasicLit [INT 1]}
+	 {*ast.AssignStmt [:= p]}
+	 {*ast.IndexExpr [freeChunks n]}
+	 {*ast.AssignStmt [=]}
+	 {*ast.IndexExpr [freeChunks n nil]}
+	 {*ast.AssignStmt [= freeChunks]}
+	 {*ast.SliceExpr [freeChunks n]}
+	 {*ast.ExprStmt -> *ast.CallExpr -> *ast.SelectorExpr [freeChunksLock Unlock]}
+	 {*ast.ReturnStmt -> *ast.SliceExpr [p]}
+
+
+function name is putChunk 
+	 { [putChunk]}
+	 {*ast.FuncType -> *ast.FieldList -> *ast.Field [chunk]}
+	 {*ast.ArrayType [byte]}
+	 {*ast.BlockStmt -> *ast.IfStmt []}
+	 {*ast.BinaryExpr [== chunk nil]}
+	 {*ast.BlockStmt -> *ast.ReturnStmt -> *ast.AssignStmt [= chunk]}
+	 {*ast.SliceExpr [chunk chunkSize]}
+	 {*ast.AssignStmt [:= p]}
+	 {*ast.CallExpr -> *ast.ParenExpr -> *ast.StarExpr -> *ast.ArrayType [chunkSize byte]}
+	 {*ast.CallExpr -> *ast.SelectorExpr [unsafe Pointer]}
+	 {*ast.UnaryExpr [&]}
+	 {*ast.IndexExpr [chunk]}
+	 {*ast.BasicLit [INT 0]}
+	 {*ast.ExprStmt -> *ast.CallExpr -> *ast.SelectorExpr [freeChunksLock Lock]}
+	 {*ast.AssignStmt [= freeChunks]}
+	 {*ast.CallExpr [append freeChunks p]}
+	 {*ast.ExprStmt -> *ast.CallExpr -> *ast.SelectorExpr [freeChunksLock Unlock]}
+
+
